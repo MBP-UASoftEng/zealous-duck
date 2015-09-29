@@ -3,11 +3,17 @@ from django.db import models
 # Create your models here.
 
 class Product(models.Model):
+	ITEM_TYPE_CHOICES = (
+		( '0', 'Normal'),
+		( '1', 'Serialized'),
+		( '2', 'Matrix'),
+	)
+
         description = models.CharField(max_length=200)
         itemID = models.PositiveSmallIntegerField()
 	lookupcode = models.CharField(max_length=30)
         price = models.DecimalField(max_digits=10, decimal_places=2)
-        itemType = models.PositiveSmallIntegerField()
+        itemType = models.CharField(max_length=1, choices=ITEM_TYPE_CHOICES, default=0)
         cost = models.DecimalField(max_digits=10, decimal_places=2)
         quantity = models.IntegerField()
         reorderPoint = models.IntegerField()
