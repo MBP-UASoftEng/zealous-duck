@@ -19,13 +19,21 @@ class Product(models.Model):
         reorderPoint = models.IntegerField()
         restockLevel = models.IntegerField()
         parentID = models.PositiveSmallIntegerField()
-        extendedDescription = models.TextField()
+        extendedDescription = models.TextField(blank=True)
         active = models.BooleanField()
         msrp = models.DecimalField(max_digits=10, decimal_places=2)
         dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 	def __str__(self):
 		return self.description
+	
+	def in_stock(self):
+		if self.quantity > 0:
+			return True
+		else:
+			return False
+	in_stock.admin_order_field = 'quantity'	
+	in_stock.boolean = True
 
 class Employee(models.Model):
 	name_first = models.CharField(max_length=100)
