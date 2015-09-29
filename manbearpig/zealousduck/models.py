@@ -4,18 +4,19 @@ from django.db import models
 
 class Product(models.Model):
         description = models.CharField(max_length=200)
-        lookupcode = models.IntegerField()
+        itemID = models.PositiveSmallIntegerField()
+	lookupcode = models.CharField(max_length=30)
         price = models.DecimalField(max_digits=10, decimal_places=2)
         itemType = models.PositiveSmallIntegerField()
         cost = models.DecimalField(max_digits=10, decimal_places=2)
         quantity = models.IntegerField()
         reorderPoint = models.IntegerField()
         restockLevel = models.IntegerField()
-        parentItem = models.ForeignKey('self')
+        parentID = models.PositiveSmallIntegerField()
         extendedDescription = models.TextField()
         active = models.BooleanField()
         msrp = models.DecimalField(max_digits=10, decimal_places=2)
-        dateCreated = models.DateField(auto_now=False, auto_now_add=True)
+        dateCreated = models.DateTimeField(auto_now=False, auto_now_add=True)
 
 class Employee(models.Model):
 	name_first = models.CharField(max_length=100)
