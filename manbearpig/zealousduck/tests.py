@@ -16,4 +16,4 @@ class ProductMethodTests(TestCase):
 		p.description = 'Test Product';
         	p.itemID = 1337;
 		p.lookupcode = '133713371337'
-		self.assertEqual(p.in_stock(), False)
+		self.assertEqual(p.is_valid, True)
